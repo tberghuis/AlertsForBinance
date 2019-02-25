@@ -8,6 +8,7 @@
     "start": "node utils/webserver.js"
   },
   "dependencies": {
+    "chrome-extension-async": "^3.3.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },

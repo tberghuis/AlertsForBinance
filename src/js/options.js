@@ -17,3 +17,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
   console.log(response);
 });
+
+
+function hello_world(){
+    console.log('can this be called from background script?');
+}
