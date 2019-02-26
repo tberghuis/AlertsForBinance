@@ -4,7 +4,7 @@
   "description": "Get notifications when cryptocurrency pairs hit a certain price",
   "scripts": {
     "build": "NODE_ENV=development node utils/build.js",
-    "build-prod": "NODE_ENV=production node utils/build.js",
+    "build-prod": "NODE_ENV=production node utils/build.js && ./utils/post-build.sh",
     "start": "NODE_ENV=development node utils/webserver.js"
   },
   "dependencies": {

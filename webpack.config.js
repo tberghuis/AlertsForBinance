@@ -89,15 +89,10 @@ var options = {
 						...JSON.parse(content.toString())
 					};
 
-					// if (env.NODE_ENV === 'production') {
-					// 	delete manifest.content_security_policy;
-					// }
-
-					console.log('env.NODE_ENV',env.NODE_ENV);
-
 					if (env.NODE_ENV === 'development') {
-						manifest.content_security_policy = "script-src 'self' 'unsafe-eval' http://localhost:8097; object-src 'self'";
-						manifest.permissions.push("http://*/*");
+						manifest.content_security_policy =
+							"script-src 'self' 'unsafe-eval' http://localhost:8097; object-src 'self'";
+						manifest.permissions.push('http://*/*');
 					}
 
 					return Buffer.from(JSON.stringify(manifest));
