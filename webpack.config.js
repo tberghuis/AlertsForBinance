@@ -18,6 +18,10 @@ if (fileSystem.existsSync(secretsPath)) {
 	alias['secrets'] = secretsPath;
 }
 
+if (env.NODE_ENV === 'development') {
+	alias['react-dom'] = '@hot-loader/react-dom';
+}
+
 var options = {
 	mode: process.env.NODE_ENV || 'development',
 	entry: {
@@ -52,6 +56,15 @@ var options = {
 				test: /\.(js|jsx)$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/
+			},
+			{
+				test: require.resolve('react'),
+				use: [
+					{
+						loader: 'expose-loader',
+						options: 'React'
+					}
+				]
 			}
 		]
 	},
@@ -76,8 +89,15 @@ var options = {
 						...JSON.parse(content.toString())
 					};
 
-					if (env.NODE_ENV === 'production') {
-						delete manifest.content_security_policy;
+					// if (env.NODE_ENV === 'production') {
+					// 	delete manifest.content_security_policy;
+					// }
+
+					console.log('env.NODE_ENV',env.NODE_ENV);
+
+					if (env.NODE_ENV === 'development') {
+						manifest.content_security_policy = "script-src 'self' 'unsafe-eval' http://localhost:8097; object-src 'self'";
+						manifest.permissions.push("http://*/*");
 					}
 
 					return Buffer.from(JSON.stringify(manifest));

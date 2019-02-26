@@ -30,7 +30,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 setTimeout(async () => {
 	try {
-        await chrome.storage.local.set({ key: "sadasfas" });
+        await chrome.storage.local.set({ key: "ffff" });
 		// chrome.storage.sync.set({ key: 'value' }, function() {
 		// 	console.log('Value is set to ' + 'value');
 		// });
@@ -38,3 +38,6 @@ setTimeout(async () => {
 		console.log('error', e);
 	}
 }, 10000);
+
+
+
