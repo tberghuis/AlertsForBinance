@@ -5,8 +5,9 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers';
 import App from './components/App';
+import devToolsEnhancer from 'remote-redux-devtools';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, devToolsEnhancer());
 
 render(
 	<Provider store={store}>
