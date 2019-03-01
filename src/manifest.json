@@ -1,5 +1,5 @@
 {
-	"name": "Chrome Extension Webpack",
+	"name": "Alerts for Binance",
 	"options_page": "options.html",
 	"background": {
 		"scripts": [ "background.bundle.js" ]
