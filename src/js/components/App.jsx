@@ -1,13 +1,17 @@
-import React from "react";
+import React from 'react';
+import { Button, Container, Divider, Header, Input, Form } from 'semantic-ui-react';
+
+import AddAlert from './AddAlert';
 
 class App extends React.Component {
-  render () {
-    return (
-      <div>
-          <h1>Add Alert</h1>
-      </div>
-    )
-  }
-};
+	render() {
+		return (
+			<Container>
+				<AddAlert />
+				<Divider />
+			</Container>
+		);
+	}
+}
 
-export default App
+export default App;

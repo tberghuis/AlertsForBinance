@@ -1,3 +1,8 @@
+// use the cdn instead
+// import 'semantic-ui-css/semantic.min.css'
+
+
+
 import '../css/options.css';
 import React from 'react';
 import { render } from 'react-dom';
