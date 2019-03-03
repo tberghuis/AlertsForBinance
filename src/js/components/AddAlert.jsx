@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Container, Divider, Header, Input, Form } from 'semantic-ui-react';
 
+import AllPairings from '../constants/allPairings';
+
 class AddAlert extends React.Component {
 	addAlertListClickHandler = () => {
 		console.log('clicked');

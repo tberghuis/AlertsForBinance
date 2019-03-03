@@ -5,10 +5,12 @@
   "scripts": {
     "build": "NODE_ENV=development node utils/build.js",
     "build-prod": "NODE_ENV=production node utils/build.js && ./utils/post-build.sh",
-    "start": "NODE_ENV=development node utils/webserver.js"
+    "start": "NODE_ENV=development node utils/webserver.js",
+    "get-all-pairings": "node ./scripts/get-all-pairings.js"
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.3",
+    "axios": "^0.18.0",
     "chrome-extension-async": "^3.3.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
