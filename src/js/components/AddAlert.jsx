@@ -3,8 +3,9 @@ import { Button, Container, Divider, Header, Input, Form } from 'semantic-ui-rea
 
 class AddAlert extends React.Component {
 	addAlertListClickHandler = () => {
-    console.log('clicked');
-    console.log('pairing',this.pairing.value);
+		console.log('clicked');
+		console.log('pairing', this.pairing.value);
+		console.log('price', this.price.value);
 	};
 
 	render() {
@@ -19,11 +20,10 @@ class AddAlert extends React.Component {
 					</Form.Field>
 					<Form.Field>
 						<label>Price</label>
-						<input placeholder="0.1" />
+						<input ref={(input) => (this.price = input)} placeholder="0.1" />
 					</Form.Field>
 					<Button onClick={this.addAlertListClickHandler}>Add to BUY|SELL alert list</Button>
 				</Form>
-				
 			</React.Fragment>
 		);
 	}
