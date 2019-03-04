@@ -47,10 +47,10 @@ class AddAlert extends React.Component {
 		};
 
 		// TODO get from redux
-		const currentPrice = await chrome.runtime.sendMessage({ getprice: pairingValueUpper });
+		// const currentPrice = await chrome.runtime.sendMessage({ getprice: pairingValueUpper });
+		const currentPrice = this.props.allCurrentPrices[pairingValueUpper];
 
-
-		if (currentPrice > this.price.value) {
+		if (currentPrice && currentPrice > this.price.value) {
 			action.type = 'BUY_LIST_ADD';
 		} else {
 			action.type = 'SELL_LIST_ADD';
@@ -61,7 +61,6 @@ class AddAlert extends React.Component {
 		// TODO
 		// send message to background and other open tabs
 		// save to local storage
-		
 	};
 
 	render() {
@@ -85,4 +84,8 @@ class AddAlert extends React.Component {
 	}
 }
 
-export default connect()(AddAlert);
+const mapStateToProps = (state) => ({
+	allCurrentPrices: state.allCurrentPrices
+});
+
+export default connect(mapStateToProps)(AddAlert);
