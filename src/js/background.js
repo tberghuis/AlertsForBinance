@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import AllPairings from './constants/allPairings';
 
-let allCurrentPrices = [];
+let allCurrentPrices = {};
 
 chrome.browserAction.onClicked.addListener(function(tab) {
 	chrome.runtime.openOptionsPage();
@@ -13,10 +13,10 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	console.log('request,sender', request, sender);
-	if (request.getprice && allCurrentPrices.length !== 0) {
-		const price = allCurrentPrices.find((x) => x.symbol === request.getprice).price;
-		console.log('price', price);
-		sendResponse(price);
+	if (request.getprice && Object.entries(allCurrentPrices).length !== 0) {
+		// const price = allCurrentPrices.find((x) => x.symbol === request.getprice).price;
+		// console.log('price', price);
+		sendResponse(allCurrentPrices[request.getprice]);
 	}
 });
 
@@ -45,23 +45,18 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 // }, 10000);
 
 async function getAllCurrentPrices() {
-	const res = await axios.get('https://api.binance.com/api/v1/ticker/allPrices');
-	allCurrentPrices = res.data;
+	try {
+		const res = await axios.get('https://api.binance.com/api/v1/ticker/allPrices');
+		res.data.map((pair) => {
+			allCurrentPrices[pair.symbol] = pair.price;
+		});
+		// await following so i can catch exception
+		await chrome.runtime.sendMessage({ updatedAllCurrentPrices: allCurrentPrices });
+	} catch (error) {
+		console.log('error', error);
+	}
 }
 
 getAllCurrentPrices();
 
-setInterval(async () => {
-	try {
-		await getAllCurrentPrices();
-		
-		// TODO process alerts buy sell lists to send notifications
-
-
-
-		// send message to update allCurrentPrices in options.html redux store
-		chrome.runtime.sendMessage({ updatedAllCurrentPrices: allCurrentPrices });
-	} catch (error) {
-		console.log('error', error);
-	}
-}, 30000);
+setInterval(getAllCurrentPrices, 30000);

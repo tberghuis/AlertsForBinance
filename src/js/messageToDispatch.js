@@ -2,6 +2,9 @@ const messageToDispatch = (dispatch) => {
 	console.log('dispatch', dispatch);
 
 	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+		// assume all is good prevents exception in background
+		sendResponse();
+
 		console.log('request,sender', request, sender);
 		if (request.updatedAllCurrentPrices) {
 			const action = {

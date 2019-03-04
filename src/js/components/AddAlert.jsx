@@ -45,7 +45,10 @@ class AddAlert extends React.Component {
 				price: this.price.value
 			}
 		};
+
+		// TODO get from redux
 		const currentPrice = await chrome.runtime.sendMessage({ getprice: pairingValueUpper });
+
 
 		if (currentPrice > this.price.value) {
 			action.type = 'BUY_LIST_ADD';
