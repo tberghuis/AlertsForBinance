@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-// import pairWatchList from './pairWatchList'
+
 import buyAlertsList from './buyAlertsList';
 import sellAlertsList from './sellAlertsList';
+import allCurrentPrices from './allCurrentPrices';
 
 export default combineReducers({
 	buyAlertsList,
-	sellAlertsList
+	sellAlertsList,
+	allCurrentPrices
 });

@@ -15,7 +15,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	console.log('request,sender', request, sender);
 	if (request.getprice && allCurrentPrices.length !== 0) {
 		const price = allCurrentPrices.find((x) => x.symbol === request.getprice).price;
-		console.log('price',price);
+		console.log('price', price);
 		sendResponse(price);
 	}
 });
@@ -51,10 +51,17 @@ async function getAllCurrentPrices() {
 
 getAllCurrentPrices();
 
-setInterval(() => {
-	// try catch
+setInterval(async () => {
+	try {
+		await getAllCurrentPrices();
+		
+		// TODO process alerts buy sell lists to send notifications
 
-	//await
-	getAllCurrentPrices();
-	// process alerts buy sell lists
+
+
+		// send message to update allCurrentPrices in options.html redux store
+		chrome.runtime.sendMessage({ updatedAllCurrentPrices: allCurrentPrices });
+	} catch (error) {
+		console.log('error', error);
+	}
 }, 30000);

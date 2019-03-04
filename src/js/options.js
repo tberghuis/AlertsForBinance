@@ -10,6 +10,7 @@ import { createStore } from 'redux';
 import rootReducer from './reducers';
 import App from './components/App';
 import devToolsEnhancer from 'remote-redux-devtools';
+import messageToDispatch from './messageToDispatch';
 
 const store = createStore(rootReducer, devToolsEnhancer());
 
@@ -19,6 +20,10 @@ render(
 	</Provider>,
 	document.getElementById('app-container')
 );
+
+messageToDispatch(store.dispatch);
+
+
 
 ////////////////////////////////////////////////////////////////////////
 
