@@ -11,6 +11,7 @@ class AddAlert extends React.Component {
 		priceFieldError: false
 	};
 
+	// TODO try catch console log error
 	addAlertListClickHandler = async () => {
 		console.log('clicked');
 		// console.log('AllPairings', AllPairings);
@@ -42,17 +43,27 @@ class AddAlert extends React.Component {
 			return;
 		}
 
-		// is it buy or sell
-		// fetch current price from api
-		await chrome.runtime.sendMessage({ getprice: pairingValueUpper });
+		const action = {
+			payload: {
+				pairing: pairingValueUpper
+			}
+		};
+		action.payload.price = await chrome.runtime.sendMessage({ getprice: pairingValueUpper });
 
+		if (action.payload.price < this.price.value) {
+			action.type = 'BUY_LIST_ADD';
+		} else {
+			action.type = 'SELL_LIST_ADD';
+		}
 
+		this.props.dispatch(action);
 
-
-		// send message
+		// send message to background and other open tabs
 		// save to local storage
 		// dispatch redux action
-		console.log('this.props.dispatch', this.props.dispatch);
+
+
+		// console.log('this.props.dispatch', this.props.dispatch);
 	};
 
 	render() {

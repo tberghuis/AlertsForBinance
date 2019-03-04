@@ -14,7 +14,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	console.log('request,sender', request, sender);
 	if (request.getprice && allCurrentPrices.length !== 0) {
-		// TODO
+		const price = allCurrentPrices.find((x) => x.symbol === request.getprice).price;
+		console.log('price',price);
+		sendResponse(price);
 	}
 });
 
