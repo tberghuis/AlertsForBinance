@@ -12,12 +12,8 @@ class AddAlert extends React.Component {
 	};
 
 	// TODO try catch console log error
-	addAlertListClickHandler = async () => {
+	addToAlertsListClickHandler = async () => {
 		console.log('clicked');
-		// console.log('AllPairings', AllPairings);
-		// console.log('pairing', this.pairing.value);
-		// console.log('price', this.price.value);
-		// console.log('price', parseFloat(this.price.value));
 
 		let formValid = true;
 
@@ -80,7 +76,7 @@ class AddAlert extends React.Component {
 						<label>Price</label>
 						<input ref={(input) => (this.price = input)} placeholder="0.1" />
 					</Form.Field>
-					<Button onClick={this.addAlertListClickHandler}>Add to alert list</Button>
+					<Button onClick={this.addToAlertsListClickHandler}>Add to alert list</Button>
 				</Form>
 			</React.Fragment>
 		);
