@@ -1,11 +1,11 @@
-const messageToDispatch = (dispatch) => {
-	console.log('dispatch', dispatch);
+const listenUpdatedAllCurrentPrices = (dispatch) => {
+	// console.log('dispatch', dispatch);
 
 	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 		// assume all is good prevents exception in background
 		sendResponse();
 
-		console.log('request,sender', request, sender);
+		// console.log('request,sender', request, sender);
 		if (request.updatedAllCurrentPrices) {
 			const action = {
 				type: 'UPDATE_CURRENT_PRICES',
@@ -17,4 +17,4 @@ const messageToDispatch = (dispatch) => {
 	});
 };
 
-export default messageToDispatch;
+export default listenUpdatedAllCurrentPrices;

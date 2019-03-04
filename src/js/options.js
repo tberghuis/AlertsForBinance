@@ -10,7 +10,7 @@ import { createStore } from 'redux';
 import rootReducer from './reducers';
 import App from './components/App';
 import devToolsEnhancer from 'remote-redux-devtools';
-import messageToDispatch from './messageToDispatch';
+import listenUpdatedAllCurrentPrices from './listenUpdatedAllCurrentPrices';
 
 const store = createStore(rootReducer, devToolsEnhancer());
 
@@ -21,7 +21,7 @@ render(
 	document.getElementById('app-container')
 );
 
-messageToDispatch(store.dispatch);
+listenUpdatedAllCurrentPrices(store.dispatch);
 
 
 
