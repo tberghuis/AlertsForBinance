@@ -8,6 +8,6 @@
 	"icons": {
 		"128": "icon-128.png"
 	},
-	"permissions": [ "storage" ],
+	"permissions": [ "storage", "https://api.binance.com/" ],
 	"manifest_version": 2
 }

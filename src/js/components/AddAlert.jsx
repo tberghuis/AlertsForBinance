@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, Container, Divider, Header, Input, Form } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
 import AllPairings from '../constants/allPairings';
 
@@ -9,7 +11,7 @@ class AddAlert extends React.Component {
 		priceFieldError: false
 	};
 
-	addAlertListClickHandler = () => {
+	addAlertListClickHandler = async () => {
 		console.log('clicked');
 		// console.log('AllPairings', AllPairings);
 		// console.log('pairing', this.pairing.value);
@@ -39,6 +41,18 @@ class AddAlert extends React.Component {
 		if (!formValid) {
 			return;
 		}
+
+		// is it buy or sell
+		// fetch current price from api
+		await chrome.runtime.sendMessage({ getprice: pairingValueUpper });
+
+
+
+
+		// send message
+		// save to local storage
+		// dispatch redux action
+		console.log('this.props.dispatch', this.props.dispatch);
 	};
 
 	render() {
@@ -55,11 +69,11 @@ class AddAlert extends React.Component {
 						<label>Price</label>
 						<input ref={(input) => (this.price = input)} placeholder="0.1" />
 					</Form.Field>
-					<Button onClick={this.addAlertListClickHandler}>Add to BUY|SELL alert list</Button>
+					<Button onClick={this.addAlertListClickHandler}>Add to alert list</Button>
 				</Form>
 			</React.Fragment>
 		);
 	}
 }
 
-export default AddAlert;
+export default connect()(AddAlert);

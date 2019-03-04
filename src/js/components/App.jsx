@@ -9,6 +9,9 @@ class App extends React.Component {
 			<Container>
 				<AddAlert />
 				<Divider />
+				<h1>BUY Alerts</h1>
+				<Divider />
+				<h1>SELL Alerts</h1>
 			</Container>
 		);
 	}

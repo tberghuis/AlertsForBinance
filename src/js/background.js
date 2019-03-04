@@ -1,15 +1,22 @@
 import '../img/icon-128.png';
 import '../img/icon-34.png';
-
 import 'chrome-extension-async';
+import axios from 'axios';
+
+import AllPairings from './constants/allPairings';
+
+let allCurrentPrices = [];
 
 chrome.browserAction.onClicked.addListener(function(tab) {
 	chrome.runtime.openOptionsPage();
 });
 
-// chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-// 	console.log('request,sender', request, sender);
-// });
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+	console.log('request,sender', request, sender);
+	if (request.getprice && allCurrentPrices.length !== 0) {
+		// TODO
+	}
+});
 
 // If you want to use the same callback you can use Promise syntax too:
 
@@ -27,7 +34,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 // 	}
 // }, 10000);
 
-
 // setTimeout(async () => {
 // 	try {
 //         await chrome.storage.local.set({ key: "ffff" });
@@ -36,5 +42,17 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 // 	}
 // }, 10000);
 
+async function getAllCurrentPrices() {
+	const res = await axios.get('https://api.binance.com/api/v1/ticker/allPrices');
+	allCurrentPrices = res.data;
+}
 
+getAllCurrentPrices();
 
+setInterval(() => {
+	// try catch
+
+	//await
+	getAllCurrentPrices();
+	// process alerts buy sell lists
+}, 30000);

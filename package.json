@@ -6,7 +6,7 @@
     "build": "NODE_ENV=development node utils/build.js",
     "build-prod": "NODE_ENV=production node utils/build.js && ./utils/post-build.sh",
     "start": "NODE_ENV=development node utils/webserver.js",
-    "get-all-pairings": "node ./scripts/get-all-pairings.js"
+    "get-all-pairings": "node ./utils/get-all-pairings.js"
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.3",
