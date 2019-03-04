@@ -1,20 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const AlertsList = (props) => (
-	<React.Fragment>
-		<h1>{props.alertType} Alerts</h1>
-		<ul>
-			{props.alertsList.map((alert) => {
-				return (
-					<li key={alert.pairing}>
-						{alert.price} {alert.pairing}
-					</li>
-				);
-			})}
-		</ul>
-	</React.Fragment>
-);
+const AlertsList = (props) => {
+	if (props.alertsList.length === 0) {
+		return null;
+	}
+
+	return (
+		<React.Fragment>
+			<h1>{props.alertType} Alerts</h1>
+			<ul>
+				{props.alertsList.map((alert) => {
+					return (
+						<li key={alert.pairing}>
+							{alert.price} {alert.pairing}
+						</li>
+					);
+				})}
+			</ul>
+		</React.Fragment>
+	);
+};
 
 const mapStateToProps = (state, ownProps) => {
 	if (ownProps.alertType === 'BUY') {

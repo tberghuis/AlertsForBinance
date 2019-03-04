@@ -41,12 +41,13 @@ class AddAlert extends React.Component {
 
 		const action = {
 			payload: {
-				pairing: pairingValueUpper
+				pairing: pairingValueUpper,
+				price: this.price.value
 			}
 		};
-		action.payload.price = await chrome.runtime.sendMessage({ getprice: pairingValueUpper });
+		const currentPrice = await chrome.runtime.sendMessage({ getprice: pairingValueUpper });
 
-		if (action.payload.price < this.price.value) {
+		if (currentPrice > this.price.value) {
 			action.type = 'BUY_LIST_ADD';
 		} else {
 			action.type = 'SELL_LIST_ADD';
@@ -54,12 +55,10 @@ class AddAlert extends React.Component {
 
 		this.props.dispatch(action);
 
+		// TODO
 		// send message to background and other open tabs
 		// save to local storage
-		// dispatch redux action
-
-
-		// console.log('this.props.dispatch', this.props.dispatch);
+		
 	};
 
 	render() {
@@ -69,14 +68,14 @@ class AddAlert extends React.Component {
 
 				<Form>
 					<Form.Field error={this.state.pairingFieldError}>
-						<label>Pairing</label>
-						<input ref={(input) => (this.pairing = input)} placeholder="ETHBTC" />
+						<label>Pairing Symbol</label>
+						<input ref={(input) => (this.pairing = input)} placeholder="e.g. ETHBTC" />
 					</Form.Field>
 					<Form.Field error={this.state.priceFieldError}>
 						<label>Price</label>
-						<input ref={(input) => (this.price = input)} placeholder="0.1" />
+						<input ref={(input) => (this.price = input)} placeholder="e.g. 0.1" />
 					</Form.Field>
-					<Button onClick={this.addToAlertsListClickHandler}>Add to alert list</Button>
+					<Button onClick={this.addToAlertsListClickHandler}>Add to alerts</Button>
 				</Form>
 			</React.Fragment>
 		);

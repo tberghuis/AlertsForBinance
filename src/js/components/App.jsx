@@ -11,7 +11,6 @@ class App extends React.Component {
 				<AddAlert />
 				<Divider />
 				<AlertsList alertType={"BUY"} />
-				<Divider />
 				<AlertsList alertType={"SELL"} />
 			</Container>
 		);
