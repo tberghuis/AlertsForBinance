@@ -22,6 +22,7 @@ render(
 );
 
 listenUpdatedAllCurrentPrices(store.dispatch);
+chrome.runtime.sendMessage({ getAllCurrentPrices: true });
 
 // TODO remove, dev preload state
 store.dispatch({

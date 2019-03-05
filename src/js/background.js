@@ -18,6 +18,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	// 	// console.log('price', price);
 	// 	sendResponse(allCurrentPrices[request.getprice]);
 	// }
+
+	// this is so client does not need to wait till next interval for update on options.html page load
+	if (request.getAllCurrentPrices) {
+		sendResponse();
+		getAllCurrentPrices();
+	}
 });
 
 // If you want to use the same callback you can use Promise syntax too:
