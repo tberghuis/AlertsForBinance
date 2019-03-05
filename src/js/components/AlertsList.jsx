@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Loader, Table, Icon } from 'semantic-ui-react';
+import { Table, Icon } from 'semantic-ui-react';
 
 const AlertsList = (props) => {
 	if (props.alertsList.length === 0 || Object.entries(props.allCurrentPrices).length === 0) {
@@ -51,7 +51,15 @@ const AlertsList = (props) => {
 										<Icon name="remove" />
 									</span>
 								</Table.Cell>
-								<Table.Cell>Cell</Table.Cell>
+								<Table.Cell>
+									<a
+										target="_blank"
+										rel="noopener noreferrer"
+										href={'https://www.binance.com/trade.html?symbol=' + alert.pairing}
+									>
+										<Icon name="linkify" />
+									</a>
+								</Table.Cell>
 							</Table.Row>
 						);
 					})}
