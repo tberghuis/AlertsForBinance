@@ -1,5 +1,5 @@
 {
-	"name": "Alerts for Binance",
+	"name": "Alerts for Binance refactor",
 	"options_page": "options.html",
 	"background": {
 		"scripts": [ "background.bundle.js" ]
