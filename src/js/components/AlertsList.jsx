@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'semantic-ui-react';
+import { Table, Icon } from 'semantic-ui-react';
 
 const AlertsList = (props) => {
-	if (props.alertsList.length === 0 || Object.entries(props.allCurrentPrices).length === 0 ) {
+	if (props.alertsList.length === 0 || Object.entries(props.allCurrentPrices).length === 0) {
 		// TODO replace with loading
 		return null;
 	}
+
+	const priceChangeNeededColor = props.alertType === 'BUY' ? '#e15241' : '#43aa05';
+
+	// const removeStyle = { padding: '10px', cursor: 'pointer', margin: '-10px' };
 
 	return (
 		<React.Fragment>
@@ -26,13 +30,21 @@ const AlertsList = (props) => {
 
 				<Table.Body>
 					{props.alertsList.map((alert) => {
+						const currentPrice = props.allCurrentPrices[alert.pairing];
+
+						const change = +parseFloat((alert.price / currentPrice - 1) * 100).toFixed(2) + '%';
+
+						// TODO find a uniq key...
+						// key={alert.pairing}
 						return (
-							<Table.Row key={alert.pairing}>
+							<Table.Row key={alert.uuid}>
 								<Table.Cell>{alert.pairing}</Table.Cell>
 								<Table.Cell>{alert.price}</Table.Cell>
-								<Table.Cell>{props.allCurrentPrices[alert.pairing]}</Table.Cell>
-								<Table.Cell>Cell</Table.Cell>
-								<Table.Cell>Cell</Table.Cell>
+								<Table.Cell>{currentPrice}</Table.Cell>
+								<Table.Cell style={{ color: priceChangeNeededColor }}>{change}</Table.Cell>
+								<Table.Cell>
+									<Icon name="remove" />
+								</Table.Cell>
 								<Table.Cell>Cell</Table.Cell>
 							</Table.Row>
 						);

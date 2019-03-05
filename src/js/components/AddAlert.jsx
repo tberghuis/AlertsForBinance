@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Container, Divider, Header, Input, Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import uuid from 'uuid/v1';
 
 import AllPairings from '../constants/allPairings';
 
@@ -38,11 +39,12 @@ class AddAlert extends React.Component {
 		if (!formValid) {
 			return;
 		}
-
+		const price = Number(this.price.value);
 		const action = {
 			payload: {
 				pairing: pairingValueUpper,
-				price: this.price.value
+				price,
+				uuid: uuid()
 			}
 		};
 

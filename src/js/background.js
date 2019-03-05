@@ -17,6 +17,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	// this is so client does not need to wait till next interval for update on options.html page load
 	if (request.getAllCurrentPrices) {
 		sendResponse();
+		// i should probably catch this promise error
 		chrome.runtime.sendMessage({ updatedAllCurrentPrices: allCurrentPrices });
 	}
 });
@@ -33,7 +34,7 @@ async function getAllCurrentPrices() {
 	try {
 		const res = await axios.get('https://api.binance.com/api/v1/ticker/allPrices');
 		res.data.map((pair) => {
-			allCurrentPrices[pair.symbol] = pair.price;
+			allCurrentPrices[pair.symbol] = Number(pair.price);
 		});
 		// await following so i can catch exception
 		await chrome.runtime.sendMessage({ updatedAllCurrentPrices: allCurrentPrices });
