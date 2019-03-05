@@ -1,16 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Icon } from 'semantic-ui-react';
+import { Loader, Table, Icon } from 'semantic-ui-react';
 
 const AlertsList = (props) => {
 	if (props.alertsList.length === 0 || Object.entries(props.allCurrentPrices).length === 0) {
-		// TODO replace with loading
 		return null;
 	}
 
 	const priceChangeNeededColor = props.alertType === 'BUY' ? '#e15241' : '#43aa05';
-
-	// const removeStyle = { padding: '10px', cursor: 'pointer', margin: '-10px' };
+	const priceChangeStyle = { color: priceChangeNeededColor };
 
 	return (
 		<React.Fragment>
@@ -22,7 +20,7 @@ const AlertsList = (props) => {
 						<Table.HeaderCell>Pairing</Table.HeaderCell>
 						<Table.HeaderCell>Target Price</Table.HeaderCell>
 						<Table.HeaderCell>Current Price</Table.HeaderCell>
-						<Table.HeaderCell>% change needed</Table.HeaderCell>
+						<Table.HeaderCell>% Change Needed</Table.HeaderCell>
 						<Table.HeaderCell>Remove Alert</Table.HeaderCell>
 						<Table.HeaderCell>Trade</Table.HeaderCell>
 					</Table.Row>
@@ -34,16 +32,24 @@ const AlertsList = (props) => {
 
 						const change = +parseFloat((alert.price / currentPrice - 1) * 100).toFixed(2) + '%';
 
-						// TODO find a uniq key...
-						// key={alert.pairing}
 						return (
 							<Table.Row key={alert.uuid}>
 								<Table.Cell>{alert.pairing}</Table.Cell>
 								<Table.Cell>{alert.price}</Table.Cell>
 								<Table.Cell>{currentPrice}</Table.Cell>
-								<Table.Cell style={{ color: priceChangeNeededColor }}>{change}</Table.Cell>
+								<Table.Cell style={priceChangeStyle}>{change}</Table.Cell>
 								<Table.Cell>
-									<Icon name="remove" />
+									<span
+										className="big-link"
+										onClick={() => {
+											props.dispatch({
+												type: props.alertType + '_LIST_REMOVE',
+												uuid: alert.uuid
+											});
+										}}
+									>
+										<Icon name="remove" />
+									</span>
 								</Table.Cell>
 								<Table.Cell>Cell</Table.Cell>
 							</Table.Row>

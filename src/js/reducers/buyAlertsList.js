@@ -3,6 +3,9 @@ const buyAlertsList = (state = [], action) => {
 		case 'BUY_LIST_ADD':
 			return [ ...state, action.payload ];
 			break;
+		case 'BUY_LIST_REMOVE':
+			return state.filter(alert => alert.uuid !== action.uuid);
+			break;
 		default:
 			return state;
 	}
