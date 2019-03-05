@@ -23,7 +23,14 @@ render(
 
 listenUpdatedAllCurrentPrices(store.dispatch);
 
-
+// TODO remove, dev preload state
+store.dispatch({
+	payload: {
+		pairing: 'ETHBTC',
+		price: '1'
+	},
+	type: 'SELL_LIST_ADD'
+});
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -40,7 +47,6 @@ listenUpdatedAllCurrentPrices(store.dispatch);
 // 		console.log(response);
 // 	});
 // }, 10000);
-
 
 // function hello_world() {
 // 	console.log('can this be called from background script?');
