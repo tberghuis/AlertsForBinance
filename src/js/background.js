@@ -41,3 +41,23 @@ async function getAllCurrentPrices() {
 getAllCurrentPrices();
 
 setInterval(getAllCurrentPrices, 30000);
+
+// hydrate store from local storage
+chrome.storage.local.get([ 'buyAlerts' ], function(result) {
+	// console.log('storage get buyalerts', result);
+	store.dispatch({
+		type: 'BUY_LIST_REPLACE',
+		payload: result.buyAlerts
+	});
+});
+
+chrome.storage.local.get([ 'sellAlerts' ], function(result) {
+	if (!result.sellAlerts) {
+		return;
+	}
+	console.log('storage get sell alerts', result);
+	store.dispatch({
+		type: 'SELL_LIST_REPLACE',
+		payload: result.sellAlerts
+	});
+});
