@@ -1,13 +1,18 @@
-
+a.big-link,
 span.big-link {
 	position: relative;
 	cursor: pointer;
 }
+a.big-link:before,
 span.big-link:before {
 	position: absolute;
 	content: '';
-	top: -10px;
-	right: -10px;
-	left: -10px;
-	bottom: -10px;
+	top: -7px;
+	right: -7px;
+	left: -7px;
+	bottom: -7px;
+}
+
+.radio {
+	margin-right: 25px;
 }

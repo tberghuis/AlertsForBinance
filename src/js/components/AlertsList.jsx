@@ -3,13 +3,6 @@ import { connect } from 'react-redux';
 import { Table, Icon } from 'semantic-ui-react';
 
 const AlertsList = (props) => {
-	// console.log('al.props', props);
-
-	// why not working???
-	// if(!props.alertsList){
-	// 	return null;
-	// }
-
 	if (props.alertsList.length === 0 || Object.entries(props.allCurrentPrices).length === 0) {
 		return null;
 	}
@@ -60,6 +53,7 @@ const AlertsList = (props) => {
 								</Table.Cell>
 								<Table.Cell>
 									<a
+										className="big-link"
 										target="_blank"
 										rel="noopener noreferrer"
 										href={'https://www.binance.com/trade.html?symbol=' + alert.pairing}
@@ -83,11 +77,6 @@ const mapStateToProps = (state, ownProps) => {
 		alertsList,
 		allCurrentPrices: state.allCurrentPrices
 	};
-
-	// if (ownProps.alertType === 'BUY') {
-	// 	return { alertsList: state.buyAlertsList };
-	// }
-	// return { alertsList: state.sellAlertsList };
 };
 
 export default connect(mapStateToProps)(AlertsList);

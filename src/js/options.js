@@ -1,18 +1,14 @@
 // use the cdn instead
 // import 'semantic-ui-css/semantic.min.css'
-
 import '../css/options.css';
 // import 'chrome-extension-async';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
 import rootReducer from './reducers';
 import App from './components/App';
-// import devToolsEnhancer from 'remote-redux-devtools';
 import { Store } from 'webext-redux';
 
-// const store = createStore(rootReducer, devToolsEnhancer());
 const store = new Store({
 	state: {
 		buyAlertsList: [],
@@ -21,7 +17,7 @@ const store = new Store({
 	}
 });
 
-window.store = store;
+// window.store = store;
 
 render(
 	<Provider store={store}>
