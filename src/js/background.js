@@ -1,5 +1,5 @@
-import '../img/icon-128.png';
-import '../img/icon-34.png';
+// import '../img/icon-128.png';
+// import '../img/icon-34.png';
 // import 'chrome-extension-async';
 import { wrapStore } from 'webext-redux';
 import { createStore } from 'redux';

@@ -1,7 +1,5 @@
 // stuff pure functions....
 
-// TODO also implement in sell reducer
-
 function persistBuyAlerts(state) {
 	// i am assuming this side effect is only run in background script
 	chrome.storage.local.set({ buyAlerts: state }, function() {

@@ -1,13 +1,10 @@
 {
-	"name": "Alerts for Binance refactor",
+	"name": "Alerts for Binance",
 	"options_page": "options.html",
 	"background": {
 		"scripts": [ "background.bundle.js" ]
 	},
 	"browser_action": {},
-	"icons": {
-		"128": "icon-128.png"
-	},
 	"permissions": [ "storage", "https://api.binance.com/", "notifications" ],
 	"manifest_version": 2
 }
