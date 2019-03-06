@@ -3,6 +3,14 @@ import { connect } from 'react-redux';
 import { Table, Icon } from 'semantic-ui-react';
 
 const AlertsList = (props) => {
+
+console.log('al.props',props);
+
+	// why not working???
+	// if(!props.alertsList){
+	// 	return null;
+	// }
+
 	if (props.alertsList.length === 0 || Object.entries(props.allCurrentPrices).length === 0) {
 		return null;
 	}
