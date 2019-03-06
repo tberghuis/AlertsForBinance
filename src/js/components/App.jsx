@@ -8,6 +8,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<Container>
+				<Header className="centered" as="h1">Alerts for Binance</Header>
 				<AddAlert />
 				<Divider />
 				<AlertsList alertType={"BUY"} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Table, Icon } from 'semantic-ui-react';
+import { Header, Table, Icon } from 'semantic-ui-react';
 
 const AlertsList = (props) => {
 	if (props.alertsList.length === 0 || Object.entries(props.allCurrentPrices).length === 0) {
@@ -12,7 +12,7 @@ const AlertsList = (props) => {
 
 	return (
 		<React.Fragment>
-			<h1>{props.alertType} Alerts</h1>
+			<Header as="h2">{props.alertType} Alerts</Header>
 
 			<Table unstackable celled>
 				<Table.Header>

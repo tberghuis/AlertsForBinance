@@ -91,7 +91,7 @@ class AddAlert extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Header as="h1">Add Alert</Header>
+				<Header as="h2">Add Alert</Header>
 				<Form>
 					<Form.Field error={this.state.pairingFieldError}>
 						<label>Pairing Symbol</label>
