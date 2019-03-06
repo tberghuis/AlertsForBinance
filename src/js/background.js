@@ -33,6 +33,8 @@ async function getAllCurrentPrices() {
 		});
 		// await following so i can catch exception
 		// await chrome.runtime.sendMessage({ updatedAllCurrentPrices: allCurrentPrices });
+
+		// process alert lists
 	} catch (error) {
 		console.log('error', error);
 	}
@@ -40,6 +42,7 @@ async function getAllCurrentPrices() {
 
 getAllCurrentPrices();
 
+// TODO user configure polling time, set min limit of 10 secs.
 setInterval(getAllCurrentPrices, 30000);
 
 // hydrate store from local storage
@@ -61,3 +64,25 @@ chrome.storage.local.get([ 'sellAlerts' ], function(result) {
 		payload: result.sellAlerts
 	});
 });
+
+// var notification = new Notification('Buy Alert - time', {
+
+// 	body: 'Pair: XXX, Price: YYY  ',
+// 	requireInteraction: true
+
+// });
+
+// debugging
+window.store = store;
+
+function processAlertLists() {
+	// lets just do buy list first
+	const state = store.getState();
+	state.buyAlertsList.map((alert) => {
+		if (state.allCurrentPrices[alert.pairing] < alert.price) {
+			// TODO notification
+			// TODO dispatch remove alert
+		}
+	});
+	// TODO sell alerts
+}
